@@ -159,7 +159,11 @@
       }
     }
   }
-
+  .primaryLogo{
+    max-height: 90px;
+    height: auto;
+    padding-left: 65px;
+  }
   .moviedetailswindow {
     max-height: round(30 * $v-font-size);
     width: round(45 * $v-font-size);

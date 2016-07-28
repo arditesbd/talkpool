@@ -47,7 +47,7 @@ public final class DashboardUI extends UI {
 
         DashboardEventBus.register(this);
         Responsive.makeResponsive(this);
-        addStyleName(ValoTheme.UI_WITH_MENU);
+        //addStyleName(ValoTheme.UI_WITH_MENU);
 
         updateContent();
 

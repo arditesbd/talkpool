@@ -3,9 +3,11 @@ package com.vaadin.demo.dashboard.view;
 import com.vaadin.demo.dashboard.event.DashboardEvent.UserLoginRequestedEvent;
 import com.vaadin.demo.dashboard.event.DashboardEventBus;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.Responsive;
+import com.vaadin.server.VaadinService;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -15,12 +17,14 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import java.io.File;
 
 @SuppressWarnings("serial")
 public class LoginView extends VerticalLayout {
@@ -49,8 +53,13 @@ public class LoginView extends VerticalLayout {
         loginPanel.setSpacing(true);
         Responsive.makeResponsive(loginPanel);
         loginPanel.addStyleName("login-panel");
-
+        Image logo=new Image();
+        logo.addStyleName("primaryLogo");
+        String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+        logo.setSource(new FileResource(new File(basepath+"/WEB-INF/images/footer-logo.svg")));
+        logo.setWidth("300px");
         loginPanel.addComponent(buildLabels());
+        loginPanel.addComponent(logo);
         loginPanel.addComponent(buildFields());
         loginPanel.addComponent(new CheckBox("Remember me", true));
         return loginPanel;
@@ -80,8 +89,8 @@ public class LoginView extends VerticalLayout {
         signin.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
-                DashboardEventBus.post(new UserLoginRequestedEvent(username
-                        .getValue(), password.getValue()));
+//                DashboardEventBus.post(new UserLoginRequestedEvent(username
+//                        .getValue(), password.getValue()));
             }
         });
         return fields;
@@ -97,7 +106,7 @@ public class LoginView extends VerticalLayout {
         welcome.addStyleName(ValoTheme.LABEL_COLORED);
         labels.addComponent(welcome);
 
-        Label title = new Label("QuickTickets Dashboard");
+        Label title = new Label("Talkpool Dashboard");
         title.setSizeUndefined();
         title.addStyleName(ValoTheme.LABEL_H3);
         title.addStyleName(ValoTheme.LABEL_LIGHT);
