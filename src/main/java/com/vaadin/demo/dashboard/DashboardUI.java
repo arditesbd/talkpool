@@ -28,7 +28,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @Theme("dashboard")
 @Widgetset("com.vaadin.demo.dashboard.DashboardWidgetSet")
-@Title("QuickTickets Dashboard")
+@Title("Talkpool Dashboard")
 @SuppressWarnings("serial")
 public final class DashboardUI extends UI {
 
@@ -40,7 +40,7 @@ public final class DashboardUI extends UI {
      */
     private final DataProvider dataProvider = new DummyDataProvider();
     private final DashboardEventBus dashboardEventbus = new DashboardEventBus();
-
+    public static final String PERSISTENCE_UNIT = "TalkpoolPU";
     @Override
     protected void init(final VaadinRequest request) {
         setLocale(Locale.US);
